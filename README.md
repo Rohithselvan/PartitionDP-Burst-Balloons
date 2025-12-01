@@ -37,11 +37,11 @@ File: `tabulation.cpp`
 
 We add a balloon with value 1 at the start and end of the array. For any interval `[i, j]`, we choose a balloon `k` to be the last one burst in that interval. The coins gained from bursting `k` last are:
 
-```
+~~~
 nums[i-1] * nums[k] * nums[j+1]
 + dp[i][k-1]
 + dp[k+1][j]
-```
+~~~
 
 
 This recurrence is used in all three approaches; the difference lies only in how the DP is implemented.
