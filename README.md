@@ -1,10 +1,10 @@
-Burst Balloons – Interval DP (Recursive, Memoization, Tabulation)
+# Burst Balloons – Interval DP (Recursive, Memoization, Tabulation)
 
 This repository contains three implementations of the Burst Balloons problem (LeetCode 312). It’s a well-known interval dynamic programming problem where the goal is to find the best order to burst balloons so that the total number of coins collected is maximized.
 
 The challenge comes from the fact that bursting one balloon immediately changes its neighbors, which means a greedy approach doesn’t work. The key idea is to think in reverse: instead of choosing the first balloon to burst, choose the last balloon to burst in a given interval. This naturally leads to a partition-based DP solution.
 
-1. Recursive Approach (Exponential, TLE)
+## 1. Recursive Approach (Exponential, TLE)
 
 This version explores every possible way to pick the last balloon in each interval. The logic is correct, but the number of repeated subproblems grows too quickly. The time complexity is exponential, so this approach will time out on LeetCode.
 
@@ -12,7 +12,7 @@ It is still useful for understanding how the interval splits into left and right
 
 File: recursive.cpp
 
-2. Memoization (Top-Down DP)
+## 2. Memoization (Top-Down DP)
 
 This version uses the same recursive structure but stores results of intervals in a dp table. This avoids recomputing the same ranges repeatedly.
 
@@ -20,7 +20,7 @@ Each interval [i, j] is solved once, and for every interval we try each possible
 
 File: memoization.cpp
 
-3. Tabulation (Bottom-Up DP)
+## 3. Tabulation (Bottom-Up DP)
 
 The tabulated version builds solutions for smaller intervals first and then uses them to solve larger intervals. This removes recursion completely and gives the cleanest and most predictable structure.
 
@@ -33,18 +33,18 @@ This is the most optimal and most stable approach.
 
 File: tabulation.cpp
 
-How the DP Works
+## How the DP Works
 
 We add a balloon with value 1 at the start and end of the array. For any interval [i, j], we choose a balloon k to be the last one burst in that interval. The coins gained from bursting k last are:
-
+```bash
 nums[i-1] * nums[k] * nums[j+1]
 + dp[i][k-1]
 + dp[k+1][j]
-
+```
 
 This transition is used in all three approaches, only the implementation style differs.
 
-Summary
+## Summary
 
 The recursive version is good for building intuition but not efficient enough.
 
